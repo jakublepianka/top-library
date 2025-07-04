@@ -28,6 +28,11 @@ function Book(id, title, author, year, readStatus){
     }
 }
 
+Book.prototype.toggleReadStatus = function () {
+    return this.readStatus = !this.readStatus;
+};
+
+
 function addBookToLibrary() {
     let bookid = crypto.randomUUID();
     let title = getTitle.value;
@@ -45,8 +50,10 @@ function createBookCard(book) {
 
     const bookCardFooter = document.createElement('div');
     bookCardFooter.classList.add('book-card-footer');
-    const removeBtn = createRemoveButton(book.id);        
-
+    const removeBtn = createRemoveButton(book.id);
+    const toggleBtn = createToggleButton(book.id);
+    
+    bookCardFooter.appendChild(toggleBtn);
     bookCardFooter.appendChild(removeBtn);
     bookCard.appendChild(bookCardFooter);
 
@@ -68,6 +75,25 @@ function createRemoveButton(bookId){
         });
     return removeBtn;
 }
+
+function createToggleButton(bookId){
+
+    const toggleBtn = document.createElement('button');
+    toggleBtn.classList.add('book-toggle-readstatus');
+    toggleBtn.innerHTML = `Read`;
+    toggleBtn.dataset.bookid = bookId;
+
+    toggleBtn.addEventListener("click", (event) => {
+        const bookId = event.target.dataset.bookid;
+        const index = myLibrary.findIndex(book => book.id === bookId);
+        if(index != -1){
+            myLibrary[index].toggleReadStatus();
+            displayBookCards();
+        }
+    })
+    return toggleBtn;
+}
+
 
 function displayBookCards(){
     container.innerHTML = '';
