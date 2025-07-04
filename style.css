@@ -48,7 +48,7 @@ body {
 
 .book-card-footer {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -66,6 +66,19 @@ body {
     cursor: pointer;
 }
 
+.book-toggle-readstatus {
+    padding: 8px;
+    border: none;
+    border-radius: 1rem;
+    color: aliceblue;
+    font-weight: 600;
+    background-color: rgb(0, 255, 0);
+}
+
+.book-toggle-readstatus:hover {
+    cursor: pointer;
+    background-color: rgb(4, 139, 4);
+}
 
 ul, li {
     list-style: none;
