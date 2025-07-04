@@ -37,12 +37,35 @@ body {
 }
 
 .book-card {
+    display: grid;
+    grid-template-rows: auto 54px;
     background-color: aliceblue;
-    padding: 1rem;
+    padding: 1rem 1rem 0.25rem 1rem;
     border: blue 1px solid;
     border-radius: 1rem;
     box-shadow: #443623 2px 4px 3px 0px;
 }
+
+.book-card-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.book-remove {
+    padding: 8px;
+    border: none;
+    border-radius: 1rem;
+    color: aliceblue;
+    font-weight: 600;
+    background-color: rgb(255, 115, 0);
+}
+
+.book-remove:hover {
+    background-color: red;
+    cursor: pointer;
+}
+
 
 ul, li {
     list-style: none;
