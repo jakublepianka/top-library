@@ -4,9 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
     <title>Library</title>
 </head>
 <body>
-    
+    <div class="header">
+        <h1>Available books</h1>
+        <dialog id="dialog">
+            <form method="dialog">
+                <p>
+                    <label>Title:
+                    <input type="text" class="book-title" required />
+                    </label>
+                </p>
+                <p>
+                    <label>Author:
+                    <input type="text" class="book-author"required />
+                    </label>
+                </p>
+                <p>
+                    <label>Year of publication:
+                    <input type="text" class="book-year" required />
+                    </label>
+                </p>
+                 <p>
+                    <label>Already read?
+                    <input type="checkbox" class="book-readstatus" />
+                    </label>
+                </p>
+                <div>
+                    <button type="button" id="book-cancel" value="cancel">Cancel</button>
+                    <button type="button" id="book-submit" value="Add Book">Add Book</button>
+                </div>
+            </form>
+        </dialog>
+        <button type="button" class="new-book">New Book</button>
+    </div>
+    <div class="container">
+    </div>
 </body>
 </html>
