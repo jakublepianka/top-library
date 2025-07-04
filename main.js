@@ -35,20 +35,47 @@ function addBookToLibrary() {
     let year = getYear.value;
     let readStatus = getReadStatus.checked;
     let book = new Book(bookid, title, author, year, readStatus);
-    // return book.getInfo();
     myLibrary.push(book);
 } 
 
+function createBookCard(book) {
+    const bookCard = document.createElement('div');
+    bookCard.classList.add('book-card');
+    bookCard.innerHTML = book.getInfo();
 
+    const bookCardFooter = document.createElement('div');
+    bookCardFooter.classList.add('book-card-footer');
+    const removeBtn = createRemoveButton(book.id);        
 
-function displayBooks() {
+    bookCardFooter.appendChild(removeBtn);
+    bookCard.appendChild(bookCardFooter);
+
+    return bookCard;
+}
+
+function createRemoveButton(bookId){
+    const removeBtn = document.createElement('button');
+    removeBtn.classList.add('book-remove');
+    removeBtn.innerHTML = `Remove`;
+    removeBtn.dataset.bookid = bookId;
+    removeBtn.addEventListener("click", (event) => {
+            const bookId = event.target.dataset.bookid;
+            const index = myLibrary.findIndex(book => book.id === bookId);
+            if (index !== -1) {
+                myLibrary.splice(index, 1);
+                displayBookCards();
+            }
+        });
+    return removeBtn;
+}
+
+function displayBookCards(){
     container.innerHTML = '';
-    myLibrary.forEach( book => {
-        const bookCard = document.createElement('div');
-        bookCard.classList.add('book-card');
-        bookCard.innerHTML = book.getInfo();
+    myLibrary.forEach( book =>{
+        const bookCard = createBookCard(book);
         container.appendChild(bookCard);
-    })
+    });
+
 }
 
 newBookBtn.addEventListener("click", () => {
@@ -59,11 +86,11 @@ newBookBtn.addEventListener("click", () => {
 confirmBtn.addEventListener("click", (event) => {
     event.preventDefault();
     addBookToLibrary();
-    displayBooks();
+    displayBookCards();
     dialog.close();
 });
 
-cancelBtn.addEventListener("click", (event) => {
+cancelBtn.addEventListener("click", () => {
     dialog.close();
 });
 
