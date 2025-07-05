@@ -19,17 +19,20 @@ function Book(id, title, author, year, readStatus){
     this.getInfo = function() {
         return `
         <ul>
-            <li>Title: ${this.title},</li>
-            <li>Author of the book: ${this.author},</li>
-            <li>Year of publication: ${this.year}</li>
-            <li>${this.readStatus ? 'Read already' : 'Not read yet'}</li>
+            <li>${this.title}&nbsp</li>
+            <li>${this.author}&nbsp</li>
+            <li>${this.year}&nbsp</li>
         </ul>
         `;
+    }
+    this.getReadStatus = function () {
+        return this.readStatus ? `Read` : `Not Read`;
     }
 }
 
 Book.prototype.toggleReadStatus = function () {
-    return this.readStatus = !this.readStatus;
+    this.readStatus = !this.readStatus;
+    return this.readStatus ? `Read` : `Not Read`;
 };
 
 
@@ -79,20 +82,28 @@ function createRemoveButton(bookId){
 function createToggleButton(bookId){
 
     const toggleBtn = document.createElement('button');
-    toggleBtn.classList.add('book-toggle-readstatus');
-    toggleBtn.innerHTML = `Read`;
     toggleBtn.dataset.bookid = bookId;
+    const index = myLibrary.findIndex(book => book.id === bookId);
+    const readStatus = myLibrary[index].getReadStatus();
+    if (readStatus == `Read`) {
+        toggleBtn.classList.add('book-toggle-read');
+        toggleBtn.innerHTML = readStatus;
+    } else {
+        toggleBtn.classList.add('book-toggle-notread');
+        toggleBtn.innerHTML = readStatus;
+    }
 
     toggleBtn.addEventListener("click", (event) => {
         const bookId = event.target.dataset.bookid;
         const index = myLibrary.findIndex(book => book.id === bookId);
         if(index != -1){
-            myLibrary[index].toggleReadStatus();
+            const btnReadStatus = myLibrary[index].toggleReadStatus();
             displayBookCards();
         }
-    })
+    });
     return toggleBtn;
 }
+
 
 
 function displayBookCards(){
