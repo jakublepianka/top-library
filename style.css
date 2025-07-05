@@ -5,45 +5,55 @@ body {
     width: 100vw;
     height: 100vh;
     font-family: Verdana, Tahoma, sans-serif;
-    
+    margin: 0;
+    background-color: #E3FDFD;
 }
 
 .header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    margin-bottom: 3rem;
+    background-color: #CBF1F5;
+    color: #2e4849;
+    width: 100vw;
 }
 
 .new-book {
-    background-color: aqua;
+    background-color: #A6E3E9;
     font-weight: bold;
+    color: #2e4849;
     padding: 1rem 1.75rem;
     border: none;
     border-radius: 1rem;
+    box-shadow: #71C9CE 2px 3px 3px 0px;
+
 }
 
 .new-book:hover {
     cursor: pointer;
-    background-color: #443623;
-    color: aqua;
+    background-color: #71C9CE;
+    color: #E3FDFD;
 }
 
 .container {
     display: grid;
     grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
-    width: 50%;
+    width: 60%;
     gap: 2rem;
 }
 
 .book-card {
     display: grid;
     grid-template-rows: auto 54px;
-    background-color: aliceblue;
+    background-color: #CBF1F5;
     padding: 1rem 1rem 0.25rem 1rem;
-    border: blue 1px solid;
+    min-width: 200px;
+    max-width: 250px;
+    border: none;
     border-radius: 1rem;
-    box-shadow: #443623 2px 4px 3px 0px;
+    box-shadow: #71C9CE 2px 3px 3px 0px;
 }
 
 .book-card-footer {
@@ -56,7 +66,7 @@ body {
     padding: 8px;
     border: none;
     border-radius: 1rem;
-    color: aliceblue;
+    color: #E3FDFD;
     font-weight: 600;
     background-color: rgb(255, 115, 0);
 }
@@ -66,22 +76,44 @@ body {
     cursor: pointer;
 }
 
-.book-toggle-readstatus {
+.book-toggle-read {
+    padding: 8px;
+    border: none;
+    width: 74.5px;
+    border-radius: 1rem;
+    color: #E3FDFD;
+    font-weight: 600;
+    background-color: rgb(0, 217, 255);
+}
+
+.book-toggle-notread {
     padding: 8px;
     border: none;
     border-radius: 1rem;
-    color: aliceblue;
+    color: #E3FDFD;
     font-weight: 600;
-    background-color: rgb(0, 255, 0);
+    background-color: rgb(255, 0, 170);
 }
 
-.book-toggle-readstatus:hover {
+.book-toggle-read:hover {
     cursor: pointer;
-    background-color: rgb(4, 139, 4);
+    background-color: rgb(0, 201, 184);
+}
+
+.book-toggle-notread:hover {
+    cursor: pointer;
+    background-color: rgb(255, 0, 55);
 }
 
 ul, li {
     list-style: none;
     padding: 0;
     margin: 0;
+    text-align: center;
+    font-weight: bold;
+    color: #2e4849;
+}
+
+li {
+    margin-bottom: 0.5rem;
 }
