@@ -10,13 +10,15 @@ const cancelBtn = dialog.querySelector('#book-cancel');
 const container = document.querySelector('.container');
 const myLibrary = [];
 
-function Book(id, title, author, year, readStatus){
-    this.id = id;
-    this.title = title;
-    this.author = author;
-    this.year = year;
-    this.readStatus = readStatus;
-    this.getInfo = function() {
+class Book {
+    constructor(id, title, author, year, readStatus){
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.readStatus = readStatus;
+    }
+    getInfo() {
         return `
         <ul>
             <li>${this.title}&nbsp</li>
@@ -25,7 +27,7 @@ function Book(id, title, author, year, readStatus){
         </ul>
         `;
     }
-    this.getReadStatus = function () {
+    getReadStatus() {
         return this.readStatus ? `Read` : `Not Read`;
     }
 }
